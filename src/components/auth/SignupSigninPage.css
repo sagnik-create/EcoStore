@@ -1,0 +1,147 @@
+/* Base font and layout */
+.signup-signin-container {
+    max-width: 400px;
+    margin: 4rem auto;
+    padding: 2.5rem 2rem;
+    background: rgba(17, 182, 80, 0.08);
+    border-radius: 2rem;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.signup-signin-title {
+    font-family: 'Julius Sans One', sans-serif;
+    font-size: 38px;
+    color: #11B650;
+    margin-bottom: 1.5rem;
+    text-align: center;
+    background: white;
+    padding: 0.5rem 2rem;
+    border-radius: 2rem;
+    font-weight: bold;
+}
+
+.signup-signin-form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+}
+
+.signup-signin-label {
+    font-size: 18px;
+    color: #222;
+    font-family: 'Julius Sans One', sans-serif;
+    margin-bottom: 0.3rem;
+}
+
+.signup-signin-input {
+    padding: 0.8rem 1rem;
+    border-radius: 1rem;
+    border: 1px solid #ccc;
+    font-size: 18px;
+    font-family: 'Junge', serif;
+    background: #fff;
+    transition: border-color 0.2s;
+}
+
+.signup-signin-input:focus {
+    border-color: #11B650;
+    outline: none;
+}
+
+.signup-signin-error {
+    color: #d32f2f;
+    background: #fff0f0;
+    border-radius: 1rem;
+    padding: 0.5rem 1rem;
+    font-size: 16px;
+    margin-bottom: 0.5rem;
+    text-align: center;
+}
+
+.signup-signin-button {
+    background-color: #000;
+    color: white;
+    border: none;
+    border-radius: 1.5rem;
+    padding: 0.9rem 2rem;
+    font-size: 20px;
+    font-family: 'Julius Sans One', sans-serif;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 0.5rem;
+    transition: background 0.2s, color 0.2s, border 0.2s;
+}
+
+.signup-signin-button:hover {
+    background-color: whitesmoke;
+    color: #000;
+    border: 2px solid #000;
+}
+
+.signup-signin-google-btn {
+    background: #fff;
+    color: #222;
+    border: 1px solid #11B650;
+    border-radius: 1.5rem;
+    padding: 0.8rem 2rem;
+    font-size: 18px;
+    font-family: 'Julius Sans One', sans-serif;
+    font-weight: bold;
+    margin-top: 1rem;
+    margin-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    cursor: pointer;
+    transition: background 0.2s, border 0.2s;
+}
+
+.signup-signin-google-btn:hover {
+    background: #11B650;
+    color: #fff;
+    border: 1px solid #11B650;
+}
+
+.signup-signin-switch-link {
+    margin-top: 1.2rem;
+    font-size: 16px;
+    color: #222;
+    text-align: center;
+}
+
+.signup-signin-switch-link a {
+    color: #11B650;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.2s;
+}
+
+.signup-signin-switch-link a:hover {
+    color: #000;
+    text-decoration: underline;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+    .signup-signin-container {
+        max-width: 95vw;
+        padding: 1.5rem 0.5rem;
+    }
+    .signup-signin-title {
+        font-size: 26px;
+        padding: 0.5rem 1rem;
+    }
+    .signup-signin-input {
+        font-size: 16px;
+        padding: 0.6rem 0.7rem;
+    }
+    .signup-signin-button,
+    .signup-signin-google-btn {
+        font-size: 16px;
+        padding: 0.7rem 1.2rem;
+    }
+}
