@@ -7,7 +7,6 @@ import Carbono from './components/Carbono';
 import Blogs from './components/BlogsPage';
 import Support from './components/Support';
 import NotFoundPage from './components/NotFoundPage';
-// Import auth components
 import SignUp from './components/auth/signUp';
 import SignIn from './components/auth/signIn';
 
@@ -21,7 +20,6 @@ function App() {
         <Route path="/carbono" element={<Carbono />} />
         <Route path="/values" element={<Blogs />} />
         <Route path="/support" element={<Support />} />
-        {/* Add auth routes */}
         <Route path="/signup" element={<SignUp />} />
         <Route path="/signin" element={<SignIn />} />
         <Route path="*" element={<NotFoundPage />} />

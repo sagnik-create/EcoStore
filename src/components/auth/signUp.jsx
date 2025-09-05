@@ -6,11 +6,30 @@ const SignUp = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
+    const [success, setSuccess] = useState('');
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         setError('');
-        // Add your sign-up logic here
+        setSuccess('');
+        try {
+            const res = await fetch('http://localhost:5001/api/auth/signup', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ username, email, password }),
+            });
+            const data = await res.json();
+            if (!res.ok) {
+                setError(data.message || 'Signup failed');
+            } else {
+                setSuccess('Signup successful! You can now sign in.');
+                setUsername('');
+                setEmail('');
+                setPassword('');
+            }
+        } catch (err) {
+            setError('Network error. Please try again.');
+        }
     };
 
     return (
@@ -18,6 +37,7 @@ const SignUp = () => {
             <div className="signup-signin-card">
                 <div className="signup-signin-title">Sign Up</div>
                 {error && <div className="signup-signin-error">{error}</div>}
+                {success && <div className="signup-signin-success">{success}</div>}
                 <form className="signup-signin-form" onSubmit={handleSubmit}>
                     <div className="signup-signin-input-group">
                         <label className="signup-signin-label" htmlFor="username">Username</label>

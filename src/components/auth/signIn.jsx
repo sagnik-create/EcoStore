@@ -6,27 +6,30 @@ const SignIn = () => {
     const [password, setPassword] = useState('');
     const [remember, setRemember] = useState(false);
     const [error, setError] = useState('');
+    const [success, setSuccess] = useState('');
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         setError('');
-
-        // Add your sign-in logic here (e.g., API call)
-        // Example:
-        // const response = await fetch('/api/signin', {
-        //     method: 'POST',
-        //     headers: {
-        //         'Content-Type': 'application/json',
-        //     },
-        //     body: JSON.stringify({ email, password }),
-        // });
-
-        // if (!response.ok) {
-        //     const data = await response.json();
-        //     setError(data.message);
-        // } else {
-        //     // Handle successful sign-in
-        // }
+        setSuccess('');
+        try {
+            const response = await fetch('http://localhost:5001/api/auth/signin', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ email, password }),
+            });
+            const data = await response.json();
+            if (!response.ok) {
+                setError(data.message || 'Signin failed');
+            } else {
+                setSuccess('Signin successful!');
+                // Optionally, handle login state here (e.g., save token, redirect)
+                setEmail('');
+                setPassword('');
+            }
+        } catch (err) {
+            setError('Network error. Please try again.');
+        }
     };
 
     return (
@@ -34,6 +37,7 @@ const SignIn = () => {
             <div className="signup-signin-card">
                 <div className="signup-signin-title">Sign In</div>
                 {error && <div className="signup-signin-error">{error}</div>}
+                {success && <div className="signup-signin-success">{success}</div>}
                 <form className="signup-signin-form" onSubmit={handleSubmit}>
                     <div className="signup-signin-input-group">
                         <label className="signup-signin-label" htmlFor="email">Email</label>
@@ -73,11 +77,9 @@ const SignIn = () => {
                 <div className="signup-signin-or">Or login with</div>
                 <div className="signup-signin-socials">
                     <button className="signup-signin-social-btn" type="button">
-                        {/* You can use an icon here */}
                         Facebook
                     </button>
                     <button className="signup-signin-social-btn" type="button">
-                        {/* You can use an icon here */}
                         Google
                     </button>
                 </div>
