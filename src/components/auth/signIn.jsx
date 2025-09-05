@@ -4,6 +4,7 @@ import './SignupSigninPage.css';
 const SignIn = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [remember, setRemember] = useState(false);
     const [error, setError] = useState('');
 
     const handleSubmit = async (e) => {
@@ -29,32 +30,61 @@ const SignIn = () => {
     };
 
     return (
-        <div className="auth-container">
-            <h2 className="hero-headline">Sign In</h2>
-            {error && <p className="error-message">{error}</p>}
-            <form onSubmit={handleSubmit} className="auth-form">
-                <div className="form-group">
-                    <label htmlFor="email">Email:</label>
-                    <input
-                        type="email"
-                        id="email"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                        required
-                    />
+        <div className="signup-signin-bg">
+            <div className="signup-signin-card">
+                <div className="signup-signin-title">Sign In</div>
+                {error && <div className="signup-signin-error">{error}</div>}
+                <form className="signup-signin-form" onSubmit={handleSubmit}>
+                    <div className="signup-signin-input-group">
+                        <label className="signup-signin-label" htmlFor="email">Email</label>
+                        <input
+                            className="signup-signin-input"
+                            type="email"
+                            id="email"
+                            placeholder="Enter your email"
+                            value={email}
+                            onChange={e => setEmail(e.target.value)}
+                            required
+                        />
+                    </div>
+                    <div className="signup-signin-input-group">
+                        <label className="signup-signin-label" htmlFor="password">Password</label>
+                        <input
+                            className="signup-signin-input"
+                            type="password"
+                            id="password"
+                            placeholder="Enter your password"
+                            value={password}
+                            onChange={e => setPassword(e.target.value)}
+                            required
+                        />
+                    </div>
+                    <div className="signup-signin-remember">
+                        <input
+                            type="checkbox"
+                            id="remember"
+                            checked={remember}
+                            onChange={e => setRemember(e.target.checked)}
+                        />
+                        <label htmlFor="remember">Remember me</label>
+                    </div>
+                    <button className="signup-signin-button" type="submit">LOGIN</button>
+                </form>
+                <div className="signup-signin-or">Or login with</div>
+                <div className="signup-signin-socials">
+                    <button className="signup-signin-social-btn" type="button">
+                        {/* You can use an icon here */}
+                        Facebook
+                    </button>
+                    <button className="signup-signin-social-btn" type="button">
+                        {/* You can use an icon here */}
+                        Google
+                    </button>
                 </div>
-                <div className="form-group">
-                    <label htmlFor="password">Password:</label>
-                    <input
-                        type="password"
-                        id="password"
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                        required
-                    />
+                <div className="signup-signin-switch-link">
+                    Not a member? <a href="/signup">Sign up now</a>
                 </div>
-                <button type="submit" className="get-started-button">Sign In</button>
-            </form>
+            </div>
         </div>
     );
 };

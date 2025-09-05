@@ -10,56 +10,66 @@ const SignUp = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         setError('');
-
-        if (!username || !email || !password) {
-            setError('All fields are required.');
-            return;
-        }
-
-        const response = await fetch('/api/signup', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ username, email, password }),
-        });
-
-        if (response.ok) {
-            // Handle successful signup (e.g., redirect or show a success message)
-        } else {
-            const data = await response.json();
-            setError(data.message || 'Signup failed. Please try again.');
-        }
+        // Add your sign-up logic here
     };
 
     return (
-        <div className="auth-container">
-            <h2 className="hero-headline">Sign Up</h2>
-            {error && <p className="error-message">{error}</p>}
-            <form onSubmit={handleSubmit} className="auth-form">
-                <input
-                    type="text"
-                    placeholder="Username"
-                    value={username}
-                    onChange={(e) => setUsername(e.target.value)}
-                    required
-                />
-                <input
-                    type="email"
-                    placeholder="Email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    required
-                />
-                <input
-                    type="password"
-                    placeholder="Password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    required
-                />
-                <button type="submit" className="get-started-button">Sign Up</button>
-            </form>
+        <div className="signup-signin-bg">
+            <div className="signup-signin-card">
+                <div className="signup-signin-title">Sign Up</div>
+                {error && <div className="signup-signin-error">{error}</div>}
+                <form className="signup-signin-form" onSubmit={handleSubmit}>
+                    <div className="signup-signin-input-group">
+                        <label className="signup-signin-label" htmlFor="username">Username</label>
+                        <input
+                            className="signup-signin-input"
+                            type="text"
+                            id="username"
+                            placeholder="Enter your username"
+                            value={username}
+                            onChange={e => setUsername(e.target.value)}
+                            required
+                        />
+                    </div>
+                    <div className="signup-signin-input-group">
+                        <label className="signup-signin-label" htmlFor="email">Email</label>
+                        <input
+                            className="signup-signin-input"
+                            type="email"
+                            id="email"
+                            placeholder="Enter your email"
+                            value={email}
+                            onChange={e => setEmail(e.target.value)}
+                            required
+                        />
+                    </div>
+                    <div className="signup-signin-input-group">
+                        <label className="signup-signin-label" htmlFor="password">Password</label>
+                        <input
+                            className="signup-signin-input"
+                            type="password"
+                            id="password"
+                            placeholder="Enter your password"
+                            value={password}
+                            onChange={e => setPassword(e.target.value)}
+                            required
+                        />
+                    </div>
+                    <button className="signup-signin-button" type="submit">SIGN UP</button>
+                </form>
+                <div className="signup-signin-or">Or sign up with</div>
+                <div className="signup-signin-socials">
+                    <button className="signup-signin-social-btn" type="button">
+                        Facebook
+                    </button>
+                    <button className="signup-signin-social-btn" type="button">
+                        Google
+                    </button>
+                </div>
+                <div className="signup-signin-switch-link">
+                    Already a member? <a href="/signin">Sign in now</a>
+                </div>
+            </div>
         </div>
     );
 };
